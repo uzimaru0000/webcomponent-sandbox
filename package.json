@@ -1,0 +1,21 @@
+{
+  "name": "web-component-sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^1.12.3",
+    "typescript": "^3.4.5",
+    "x-tag": "^2.0.3-beta"
+  },
+  "dependencies": {
+    "lit-html": "^1.0.0"
+  }
+}
