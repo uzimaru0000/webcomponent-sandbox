@@ -14,6 +14,10 @@
         font-size: 16px;
       }
 
+      .form {
+        width: 540px;
+      }
+
     </style>
   </head>
   <body>
@@ -21,5 +25,14 @@
       <span>click me</span>
       <ripple-effect color="#ff8844"/>
     </button>
+
+    <div style="padding: 16px;">
+      <x-input placeholder="email" type="email"></x-input>
+      <x-input placeholder="password" type="password"></x-input>
+    </div>
+
+    <div>
+      <x-input placeholder="email" type="email" class="form"></x-input>
+    </div>
   </body>
 </html>
