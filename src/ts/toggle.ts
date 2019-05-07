@@ -2,45 +2,33 @@ import { html, render } from "lit-html";
 
 class Toggle extends HTMLElement {
   static get observedAttributes() {
-    return ["type", "placeholder", "color"];
+    return ["checked"];
   }
 
-  type: string;
-  placeholder: string;
-  color: string;
+  private _value: boolean;
+
+  get value() {
+    return this._value;
+  }
+
+  set value(val: boolean) {
+    this._value = val;
+    this.render();
+  }
 
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.type = "text";
-    this.placeholder = "";
-    this.color = "#4488ff";
+    this.value = false;
   }
 
   connectedCallback() {
     this.render();
-
-    const input = this.shadowRoot.getElementById("form") as HTMLInputElement;
-    const label = this.shadowRoot.querySelector("label");
-    input.addEventListener("blur", e => {
-      if (input.value.length !== 0) {
-        label.classList.add("isVal");
-      } else {
-        label.classList.remove("isVal");
-      }
-    });
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    switch (name) {
-      case "type":
-        this.type = newValue;
-        break;
-      case "placeholder":
-        this.placeholder = newValue;
-        break;
-      case "color":
-        this.color = newValue;
+    if (name === "checked") {
+      this._value = oldValue === null;
     }
 
     this.render();
@@ -48,7 +36,7 @@ class Toggle extends HTMLElement {
 
   get template() {
     return html`
-      <input id="form" type="checkbox" />
+      <input id="form" type="checkbox" ?checked=${this._value} />
       <label for="form"></label>
     `;
   }
