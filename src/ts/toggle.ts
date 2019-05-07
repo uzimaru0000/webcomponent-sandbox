@@ -36,7 +36,12 @@ class Toggle extends HTMLElement {
 
   get template() {
     return html`
-      <input id="form" type="checkbox" ?checked=${this._value} />
+      <input
+        id="form"
+        type="checkbox"
+        ?checked=${this._value}
+        @change="${() => this.dispatchEvent(new CustomEvent("change"))}"
+      />
       <label for="form"></label>
     `;
   }
