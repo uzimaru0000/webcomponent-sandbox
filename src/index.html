@@ -7,32 +7,39 @@
       .button {
         width: 128px;
         height: 48px;
-        background: transparent;
+        background: #4488ff;
         border: none;
         outline: none;
-        box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
         font-size: 16px;
+        transition: 0.1s ease;
+        border-radius: 8px;
       }
 
       .form {
         width: 540px;
       }
 
+      div {
+        padding: 16px;
+      }
+
     </style>
   </head>
   <body>
-    <button class="button">
-      <span>click me</span>
-      <ripple-effect color="#ff8844"/>
-    </button>
+    <div>
+      <button class="button">
+        <span>click me</span>
+        <ripple-effect color="#eee"/>
+      </button>
+    </div>
 
-    <div style="padding: 16px;">
+    <div>
       <x-input placeholder="email" type="email"></x-input>
       <x-input placeholder="password" type="password"></x-input>
     </div>
 
     <div>
-      <x-input placeholder="email" type="email" class="form"></x-input>
+      <x-toggle></x-toggle>
     </div>
   </body>
 </html>
