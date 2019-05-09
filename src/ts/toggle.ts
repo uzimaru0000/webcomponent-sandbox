@@ -5,21 +5,21 @@ class Toggle extends HTMLElement {
     return ["checked"];
   }
 
-  private _value: boolean;
-
-  get value() {
-    return this._value;
+  get checked() {
+    const input = this.shadowRoot.getElementById("form") as HTMLInputElement;
+    return input ? input.checked : false;
   }
 
-  set value(val: boolean) {
-    this._value = val;
-    this.render();
+  set checked(val: boolean) {
+    const input = this.shadowRoot.getElementById("form") as HTMLInputElement;
+    if (input) {
+      input.checked = val;
+    }
   }
 
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.value = false;
   }
 
   connectedCallback() {
@@ -28,7 +28,7 @@ class Toggle extends HTMLElement {
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (name === "checked") {
-      this._value = oldValue === null;
+      this.checked = !this.checked;
     }
 
     this.render();
@@ -39,8 +39,10 @@ class Toggle extends HTMLElement {
       <input
         id="form"
         type="checkbox"
-        ?checked=${this._value}
-        @change="${() => this.dispatchEvent(new CustomEvent("change"))}"
+        @click="${e => {
+          this.dispatchEvent(new CustomEvent("change"));
+          e.stopPropagation();
+        }}"
       />
       <label for="form"></label>
     `;

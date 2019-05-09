@@ -2,19 +2,26 @@ import { render, html } from "lit-html";
 
 class InputForm extends HTMLElement {
   static get observedAttributes() {
-    return ["type", "placeholder", "color"];
+    return ["type", "placeholder", "value"];
   }
 
   type: string;
   placeholder: string;
-  color: string;
+
+  get value() {
+    const input = this.shadowRoot.getElementById("form") as HTMLInputElement;
+    return input ? input.value : "";
+  }
+
+  set value(val: string) {
+    (this.shadowRoot.getElementById("form") as HTMLInputElement).value = val;
+  }
 
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
     this.type = "text";
     this.placeholder = "";
-    this.color = "#4488ff";
   }
 
   connectedCallback() {
@@ -22,7 +29,7 @@ class InputForm extends HTMLElement {
 
     const input = this.shadowRoot.getElementById("form") as HTMLInputElement;
     const label = this.shadowRoot.querySelector("label");
-    input.addEventListener("blur", e => {
+    input.addEventListener("blur", () => {
       if (input.value.length !== 0) {
         label.classList.add("isVal");
       } else {
@@ -39,8 +46,8 @@ class InputForm extends HTMLElement {
       case "placeholder":
         this.placeholder = newValue;
         break;
-      case "color":
-        this.color = newValue;
+      case "value":
+        this.value = newValue;
     }
 
     this.render();
@@ -57,36 +64,46 @@ class InputForm extends HTMLElement {
     return html`
       <style>
         :host {
+          --font-size: 16px;
+          --padding: 8px;
+          --background: #4488ff;
+          --animation-speed: 0.1s;
+          --color: black;
+        }
+
+        :host {
           position: relative;
           display: inline-block;
         }
 
         input {
+          background: transparent;
           border: transparent;
           border-bottom: 1px solid #c3c3c3;
           box-sizing: border-box;
-          font-size: 16px;
+          color: var(--color);
+          font-size: var(--font-size);
           height: 100%;
           outline: none;
-          padding: 8px 0;
+          padding: var(--padding) 0;
           width: 100%;
         }
 
         label {
           position: absolute;
-          top: calc(50% - 8px);
+          top: calc(50% - var(--padding));
           left: 0;
           right: 0;
           bottom: 0;
-          transition: top 0.1s ease;
+          transition: top var(--animation-speed) ease;
           color: #c3c3c3;
         }
 
         input:focus + label,
         label.isVal {
           font-size: 12px;
-          top: -8px;
-          color: ${this.color};
+          top: calc(-1 * var(--padding));
+          color: var(--background);
         }
 
         label::before {
@@ -96,9 +113,9 @@ class InputForm extends HTMLElement {
           width: 100%;
           height: 2px;
           bottom: 0px;
-          background: ${this.color};
+          background: var(--background);
           transform: scale(0, 1);
-          transition: transform 0.1s ease;
+          transition: transform var(--animation-speed) ease;
         }
 
         input:focus + label::before {

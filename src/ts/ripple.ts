@@ -11,8 +11,8 @@ class Ripple extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.size = 150;
-    this.color = "gray";
+    this.size = 64;
+    this.color = "#ccc";
   }
   connectedCallback() {
     this.render();

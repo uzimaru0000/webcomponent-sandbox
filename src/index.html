@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>WebComponent SandBox</title>
-    <script src="./index.ts"></script>
     <style>
       .button {
         width: 98px;
@@ -16,35 +15,27 @@
         border-radius: 8px;
       }
 
-      .form {
-        width: 540px;
-      }
-
       div {
         padding: 16px;
       }
 
+      .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+
+      .container > * {
+        flex: 1;
+      }
     </style>
   </head>
   <body>
-    <div>
-      <button class="button">
-        <span>click me</span>
-        <ripple-effect color="#eee" size="64"/>
-      </button>
+    <div class="container">
+      <div id="elm"></div>
+      <div id="vue"></div>
+      <div id="react"></div>
     </div>
-
-    <div>
-      <x-input placeholder="email" type="email"></x-input>
-      <x-input placeholder="password" type="password"></x-input>
-    </div>
-
-    <div>
-      <x-toggle></x-toggle>
-    </div>
-
-    <script>
-      document.querySelector('x-toggle').addEventListener('change', e => console.log(e));
-    </script>
+    <script src="./index.tsx"></script>
   </body>
 </html>
