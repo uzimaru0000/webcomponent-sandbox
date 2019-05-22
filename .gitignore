@@ -1,6 +1,12 @@
 
-# Created by https://www.gitignore.io/api/node,typescript
-# Edit at https://www.gitignore.io/?templates=node,typescript
+# Created by https://www.gitignore.io/api/node,typescript,elm,vue,react
+# Edit at https://www.gitignore.io/?templates=node,typescript,elm,vue,react
+
+### Elm ###
+# elm-package generated files
+elm-stuff
+# elm-repl generated files
+repl-temp-*
 
 ### Node ###
 # Logs
@@ -88,8 +94,10 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+#!! ERROR: react is undefined. Use list command to see defined gitignore types !!#
+
 #!! ERROR: typescript is undefined. Use list command to see defined gitignore types !!#
 
-# End of https://www.gitignore.io/api/node,typescript
-node_modules
-dist
+#!! ERROR: vue is undefined. Use list command to see defined gitignore types !!#
+
+# End of https://www.gitignore.io/api/node,typescript,elm,vue,react
