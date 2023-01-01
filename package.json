@@ -14,7 +14,7 @@
     "@vue/component-compiler-utils": "^3.0.0",
     "elm-hot": "^1.0.1",
     "node-elm-compiler": "^5.0.3",
-    "parcel": "^1.12.3",
+    "parcel": "^2.8.2",
     "typescript": "^3.4.5",
     "vue-template-compiler": "^2.6.10",
     "x-tag": "^2.0.3-beta"
